@@ -4,6 +4,7 @@ import Meta from "../../components/Meta";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Section } from "../../styles/GlobalComponents";
+import { setTitleCase } from "../../helpers";
 import {
   FilterWrapper,
   Title,
@@ -17,10 +18,6 @@ export default function ArticlesPage({
 }) {
   const [articles, setArticles] = useState(allArticles);
   const router = useRouter();
-
-  const setTitleCase = (category) => {
-    return category.slice(0, 1).toUpperCase() + category.slice(1).toLowerCase();
-  };
 
   const handleAll = async (e) => {
     const response = await fetch(`${server}/api/articles`);

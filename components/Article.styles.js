@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Section } from "../styles/GlobalComponents";
-import { FancyButton } from "../styles/GlobalComponents/Button";
+import { FancyButton, StyledButton } from "../styles/GlobalComponents/Button";
 
 export const ArticleWrapper = styled(Section)`
   min-height: 100vh;
@@ -15,7 +15,7 @@ export const Card = styled.div`
   flex-direction: column;
   max-width: ${({ article }) => (article ? "900px" : "300px")};
   margin: ${({ article }) => (article ? "1rem" : "2rem")};
-  min-width: 250px;
+  min-width: 300px;
   height: auto;
   overflow: hidden;
   justify-content: center;
@@ -40,7 +40,12 @@ export const Item1 = styled(Item)`
 `;
 
 export const Item2 = styled(Item)`
+  font-size: 1.7rem;
   font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: ${({ noClamp }) => (noClamp ? "none" : 1)};
+  overflow: hidden;
 `;
 
 export const Item3 = styled(Item)`
@@ -48,6 +53,18 @@ export const Item3 = styled(Item)`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: ${({ noClamp }) => (noClamp ? "none" : 4)};
   overflow: hidden;
+`;
+
+export const BtnLink = styled(StyledButton)`
+  background-color: transparent;
+  font-size: 1.6rem;
+  padding-left: 0.2rem;
+  margin: 1rem;
+  margin-bottom: 0;
+  border: none;
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 export const BackButton = styled(FancyButton)`

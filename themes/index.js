@@ -22,6 +22,7 @@ export const theme = {
     dark: "#111", // black
     lightDark: "#222",
     light: "#fff", // white
+    darkLight: "#cccccc", // white
   },
 
   // Breakpoints for responsive design

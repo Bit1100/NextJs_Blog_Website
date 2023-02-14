@@ -1,17 +1,31 @@
 import Link from "next/link";
-const Navbar = () => {
+import Image from "next/image";
+import { useRouter } from "next/router";
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavLink,
+} from "../styles/PageStyles/App.styles";
+
+const Header = () => {
+  const router = useRouter();
+
   return (
-    <nav>
-      <ul>
-        <li>
+    <Navbar>
+      <NavbarBrand onClick={() => router.push("/")}>
+        <Image src="/images/blog.png" alt="Brand Logo" width={32} height={32} />
+      </NavbarBrand>
+      <Nav>
+        <NavLink>
           <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
-      </ul>
-    </nav>
+        </NavLink>
+        <NavLink>
+          <Link href="/articles">Bideos</Link>
+        </NavLink>
+      </Nav>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default Header;

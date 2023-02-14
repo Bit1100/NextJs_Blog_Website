@@ -23,8 +23,15 @@ export const StyledButton = styled.button`
 `;
 
 export const FancyButton = styled(StyledButton)`
-  background-image: ${({ theme }) =>
-    `linear-gradient(to right, ${theme.colors.tertiaryLight} 0%, ${theme.colors.tertiaryLight} 100%)`};
-  border: none;
+  background-color: ${({ theme }) => theme.colors.tertiaryLight};
   margin: 1.5rem 0;
+  border: 1px solid;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.tertiaryLight};
+    border: 2px solid ${({ theme }) => theme.colors.tertiaryLight};
+    background-color: ${({ theme }) =>
+      `linear-gradient(to right, ${theme.colors.tertiaryDark} 0%, ${theme.colors.light} 100%)`};
+  }
 `;

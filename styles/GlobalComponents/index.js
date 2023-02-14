@@ -4,6 +4,10 @@ export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   margin: 0 auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Section = styled.section`
@@ -14,9 +18,9 @@ export const Section = styled.section`
   margin: 0 auto;
   padding-top: 2rem;
   padding-bottom: 4rem;
-  background-color: ${({ theme }) => theme.colors.lightDark};
   max-width: 1150px;
   overflow: hidden;
+  position: relative;
 
   @media ${({ theme }) => theme.breakpoints.md} {
     padding: 24px 48px;
@@ -35,7 +39,7 @@ export const SectionTitle = styled.h1`
   text-align: ${({ center }) => (center ? "center" : "left")};
   max-width: 100%;
   color: ${({ theme }) => theme.colors.light};
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   @media ${(props) => props.theme.breakpoints.md} {
     font-size: ${(props) => (props.main ? "56px" : "48px")};
@@ -60,7 +64,7 @@ export const SectionText = styled.p`
   font-size: 20px;
   line-height: 36px;
   font-weight: 300;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   color: #fff;
 
   @media ${(props) => props.theme.breakpoints.md} {
