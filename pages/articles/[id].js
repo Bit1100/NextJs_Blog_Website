@@ -30,10 +30,12 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params: { id } }) => {
+export const getStaticProps = async ({ params }) => {
+  const id = params.id;
+
   const data = await axios.get(`${server}/api/articles/${id}`);
 
-  const article = await data.data;
+  const article = data.data;
 
   if (!article[0].id) {
     return {
