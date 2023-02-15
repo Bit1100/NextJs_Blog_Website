@@ -31,9 +31,9 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { id } }) => {
-  const response = await fetch(`${server}/api/articles/${id}`);
+  const data = await axios.get(`${server}/api/articles/${id}`);
 
-  const article = await response.json();
+  const article = await data.data;
 
   if (!article[0].id) {
     return {
