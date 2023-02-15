@@ -1,4 +1,4 @@
-import React from "react";
+import axios from "axios";
 import { server } from "../../config";
 import Article from "../../components/Articles/Article";
 import { ArticleWrapper } from "../../components/Articles/Article.styles";
@@ -14,9 +14,9 @@ const SingleArticle = ({ article }) => {
 export default SingleArticle;
 
 export const getStaticPaths = async () => {
-  const response = await fetch(`${server}/api/articles`);
+  const data = await axios.get(`${server}/api/articles`);
 
-  const articles = await response.json();
+  const articles = data.data;
 
   const paths = articles.map((article) => ({
     params: {

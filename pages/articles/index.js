@@ -1,4 +1,5 @@
 import { BiSearch } from "react-icons/bi";
+import axios from "axios";
 import { server } from "../../config";
 import Articles from "../../components/Articles/Articles";
 import Meta from "../../components/Layout/Meta";
@@ -32,9 +33,9 @@ export default function ArticlesPage({
 
   // Handle Filter for popular category
   const handlePopularFilter = async (e) => {
-    const response = await fetch(`${server}/api/articles`);
+    const data = await axios.get(`${server}/api/articles`);
 
-    const articles = await response.json();
+    const articles = data.data;
 
     setArticles(articles);
 
@@ -54,9 +55,9 @@ export default function ArticlesPage({
       return;
     }
 
-    const response = await fetch(`${server}/api/articles/category/${category}`);
+    const data = await axios(`${server}/api/articles/category/${category}`);
 
-    const articles = await response.json();
+    const articles = data.data;
 
     setArticles(articles);
 
@@ -140,11 +141,11 @@ export default function ArticlesPage({
 export const getServerSideProps = async ({ query }) => {
   const category = query?.category || null;
 
-  const response = await fetch(
+  const data = await axios.get(
     `${server}/api/articles/${category ? `category/${category}` : ""}`
   );
 
-  const articles = await response.json();
+  const articles = data.data;
 
   // console.log(articles);
   if (!articles?.length) {
