@@ -3,18 +3,21 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Meta from "../components/Meta";
 import { ThemeProvider } from "styled-components";
+import { Provider } from "../context";
 import { theme } from "../themes";
 import GlobalStyles from "../styles/globals";
 
 const Layout = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Meta />
-      <Navbar />
-      <Container>{children}</Container>
-      <Footer />
-    </ThemeProvider>
+    <Provider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Meta />
+        <Navbar />
+        <Container>{children}</Container>
+        <Footer />
+      </ThemeProvider>
+    </Provider>
   );
 };
 

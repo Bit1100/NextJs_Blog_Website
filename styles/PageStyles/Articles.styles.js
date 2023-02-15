@@ -47,3 +47,38 @@ export const StyledFilterButton = styled(StyledButton)`
     padding: 0.8rem;
   }
 `;
+
+export const Form = styled.form`
+  width: 100%;
+  margin: 2rem auto 5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FormControl = styled.input`
+  width: 50%;
+  min-width: 250px;
+  margin: 1rem;
+  padding: 1.4rem;
+  border-radius: 20px;
+  border: 2px solid ${({ theme }) => theme.colors.primarySemiBold};
+  font-size: 1.5rem;
+  outline: none;
+  text-align: center;
+`;
+
+export const SearchButton = styled(StyledButton)`
+  margin-left: -6rem;
+  background: transparent;
+  border: none;
+  font-weight: 900;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+  border-radius: 50%;
+  outline: none;
+  &:hover {
+    transform: scale(1.1);
+    background: transparent;
+  }
+`;

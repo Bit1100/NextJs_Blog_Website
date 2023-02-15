@@ -1,7 +1,9 @@
+import { BiSearch } from "react-icons/bi";
 import { server } from "../../config";
 import Articles from "../../components/Articles";
 import Meta from "../../components/Meta";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useCustomContext } from "../../context";
 import { useRouter } from "next/router";
 import { Section } from "../../styles/GlobalComponents";
 import { setTitleCase } from "../../helpers";
@@ -10,6 +12,9 @@ import {
   Title,
   ArticlesWrapper,
   StyledFilterButton,
+  SearchButton,
+  Form,
+  FormControl,
 } from "../../styles/PageStyles/Articles.styles";
 
 export default function ArticlesPage({
@@ -17,9 +22,12 @@ export default function ArticlesPage({
   category: articlesCategory,
 }) {
   const [articles, setArticles] = useState(allArticles);
+  const [query, setQuery] = useState("");
+  const searchRef = useState(null);
+  const { dispatch } = useCustomContext();
   const router = useRouter();
 
-  const handleAll = async (e) => {
+  const handleAllFilter = async (e) => {
     const response = await fetch(`${server}/api/articles`);
 
     const articles = await response.json();
@@ -33,7 +41,7 @@ export default function ArticlesPage({
     const category = e.currentTarget.textContent.toLowerCase();
 
     if (category === "all") {
-      handleAll();
+      handleAllFilter();
       return;
     }
 
@@ -44,6 +52,21 @@ export default function ArticlesPage({
     setArticles(articles);
 
     router.push(`?category=${category}`, undefined, { swallow: true });
+  };
+
+  const categories = [
+    "all",
+    ...new Set(articles.map((article) => article.category)),
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch({ type: "SET_QUERY", payload: query });
+
+    setQuery("");
+
+    searchRef.current.blur();
   };
 
   return (
@@ -62,14 +85,26 @@ export default function ArticlesPage({
           Articles
         </Title>
         <FilterWrapper row>
-          <StyledFilterButton onClick={handleFilter}>All</StyledFilterButton>
-          <StyledFilterButton onClick={handleFilter}>
-            Frontend
-          </StyledFilterButton>
-          <StyledFilterButton onClick={handleFilter}>
-            Backend
-          </StyledFilterButton>
+          {categories?.map((category) => (
+            <StyledFilterButton key={category} onClick={handleFilter}>
+              {setTitleCase(category)}
+            </StyledFilterButton>
+          ))}
         </FilterWrapper>
+        <Form onSubmit={handleSubmit}>
+          <FormControl
+            autoComplete="off"
+            ref={searchRef}
+            id="search"
+            name="search"
+            placeholder="Search articles here.."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <SearchButton type="submit">
+            <BiSearch color="#33ff33" />
+          </SearchButton>
+        </Form>
         <ArticlesWrapper row>
           <Articles articles={articles} />
         </ArticlesWrapper>
