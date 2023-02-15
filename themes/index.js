@@ -6,7 +6,7 @@ export const theme = {
   },
   // Colors for layout
   colors: {
-    primary: "#33ff33", //green
+    primary: "#4caf50", //green
     primaryLight: "#66ff66",
     primarySemiBold: "#7FFFD4",
     primaryBold: "#009900",

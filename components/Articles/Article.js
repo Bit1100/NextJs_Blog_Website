@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { Card, Item1, Item2, Item3, BackButton } from "./Article.styles";
-import { setTitleCase } from "../helpers";
+import { setTitleCase } from "../../helpers";
 
 const Article = ({ article }) => {
   const router = useRouter();

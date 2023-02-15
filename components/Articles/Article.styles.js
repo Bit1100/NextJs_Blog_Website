@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Section } from "../styles/GlobalComponents";
-import { FancyButton, StyledButton } from "../styles/GlobalComponents/Button";
+import { Section } from "../../styles/GlobalComponents";
+import { StyledButton } from "../../styles/GlobalComponents/Button";
 
 export const ArticleWrapper = styled(Section)`
   min-height: 100vh;
@@ -9,7 +9,7 @@ export const ArticleWrapper = styled(Section)`
 `;
 
 export const Card = styled.div`
-  background-color: ${({ theme }) => theme.colors.dark};
+  background-color: ${({ theme }) => theme.colors.lightDark};
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -64,12 +64,20 @@ export const BtnLink = styled(StyledButton)`
   border: none;
   &:hover {
     background-color: transparent;
+    border: transparent;
   }
 `;
 
-export const BackButton = styled(FancyButton)`
+export const BackButton = styled(StyledButton)`
   margin-left: 1rem;
+  margin-top: 2rem;
   font-size: 1.5rem;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.light};
+
+  &:hover {
+    font-weight: 900;
+  }
 
   @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 1.3rem;

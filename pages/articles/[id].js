@@ -1,7 +1,7 @@
 import React from "react";
 import { server } from "../../config";
-import Article from "../../components/Article";
-import { ArticleWrapper } from "../../components/Article.styles";
+import Article from "../../components/Articles/Article";
+import { ArticleWrapper } from "../../components/Articles/Article.styles";
 
 const SingleArticle = ({ article }) => {
   return (

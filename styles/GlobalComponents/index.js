@@ -42,7 +42,7 @@ export const SectionTitle = styled.h1`
   margin-bottom: 3rem;
 
   @media ${(props) => props.theme.breakpoints.md} {
-    font-size: ${(props) => (props.main ? "56px" : "48px")};
+    font-size: ${(props) => (props.main ? "56px" : "40px")};
     line-height: ${(props) => (props.main ? "56px" : "48px")};
     margin-bottom: 12px;
     padding: ${(props) => (props.main ? "40px 0 12px" : "0")};

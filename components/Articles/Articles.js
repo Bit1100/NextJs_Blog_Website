@@ -1,6 +1,6 @@
 import React from "react";
 import ArticleItem from "./ArticleCard";
-import { useCustomContext } from "../context";
+import { useCustomContext } from "../../context";
 import { matchSorter } from "match-sorter";
 
 const Articles = ({ articles }) => {

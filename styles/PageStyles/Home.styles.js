@@ -1,46 +1,13 @@
 import { Section, SectionTitle } from "../GlobalComponents";
 import styled, { keyframes } from "styled-components";
 
-const move = keyframes`
+export const move = keyframes`
 from{
    transform:scale(.80) rotateZ(0);
 }
 to{
    transform:scale(1.1) rotateZ(-60deg);
 }
-`;
-
-// Navbar Styles
-export const Navbar = styled.nav`
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.dark};
-  font-size: 2rem;
-  font-weight: 800;
-  padding: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.darkLight};
-`;
-
-export const NavbarBrand = styled.span`
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in;
-  animation: ${move} 4s ease-in-out infinite forwards alternate-reverse;
-`;
-
-export const Nav = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-export const NavLink = styled.li`
-  margin: 1rem;
 `;
 
 // Home Section Styles
@@ -97,17 +64,10 @@ export const CategorizedArticles = styled(Section)`
 `;
 
 export const Title = styled(SectionTitle)`
+  font-size: 3rem;
+  width: max-content;
+  border-bottom: 3px solid ${({ theme }) => theme.colors.tertiaryLight};
   margin-bottom: 0;
-  padding-left: 3%;
-`;
-
-// Footer Styles
-export const Footer = styled.footer`
-  width: 100%;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.dark};
-  font-size: 1.5rem;
-  font-weight: 800;
-  padding: 1rem;
-  background-color: ${({ theme }) => theme.colors.darkLight};
+  padding: 0.5rem 1rem 0 1rem;
+  border-radius: 20px;
 `;

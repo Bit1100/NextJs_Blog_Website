@@ -1,15 +1,11 @@
 # Basic Blog Website using Next.Js
 
-This is the first nextJs project on BiT. This project is all about the basic blog website for beginners. This website fetches the data both from external api and json file. This would the site for understanding for NextJs.
+This is a NextJs Blog Website where users can read, search and filter the blogs as per their interests.
 
 ## Concepts Involved
 
-React Hooks
-NextJs API data fetching Methods
-File System Routing
-Async and Await
-404 Dynamic Error Page(Best Concepts)
-
-### Audience
-
-This is made for beginners as well as intermediate developrs who want to get into NextJs World.
+SSG - falllback => true | blocking
+ISR - revalidate
+SSR - server side request
+Swallow Routing
+Pre-rendering with Client side Data Fetching

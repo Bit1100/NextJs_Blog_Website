@@ -1,6 +1,6 @@
 // All the style files goes here in this file
 // import "../styles/common.scss";
-import Layout from "../layout";
+import Layout from "AppLayout";
 
 // Function acting like a Templating Language
 function MyApp({ Component, pageProps }) {

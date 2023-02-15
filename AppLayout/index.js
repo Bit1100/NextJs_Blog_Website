@@ -1,7 +1,7 @@
 import { Container, Main } from "../styles/GlobalComponents";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Meta from "../components/Meta";
+import Navbar from "../components/Layout/Navbar";
+import Meta from "../components/Layout/Meta";
+import Footer from "../components/Layout/Footer";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "../context";
 import { theme } from "../themes";

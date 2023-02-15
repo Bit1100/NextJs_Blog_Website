@@ -1,6 +1,15 @@
 import { Section, SectionTitle } from "../GlobalComponents";
 import { StyledButton } from "../GlobalComponents/Button";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const activeButtonStyles = css`
+  border: 2px solid ${({ theme }) => theme.colors.light};
+  color: ${({ theme }) => theme.colors.light};
+  background-color: ${({ theme }) => theme.colors.primary};
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.light};
+  }
+`;
 
 export const ArticlesWrapper = styled(Section)`
   flex-wrap: wrap;
@@ -32,10 +41,9 @@ export const Title = styled(SectionTitle)`
 `;
 
 export const StyledFilterButton = styled(StyledButton)`
+  outline: none;
   margin: 0.8rem;
-  &:hover {
-    border: 3px solid ${({ theme }) => theme.colors.primarySemiBold};
-  }
+  ${({ active }) => (active ? activeButtonStyles : "")}
 
   @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 1.6rem;
@@ -78,6 +86,7 @@ export const SearchButton = styled(StyledButton)`
   border-radius: 50%;
   outline: none;
   &:hover {
+    border: transparent;
     transform: scale(1.1);
     background: transparent;
   }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BtnLink, Card, Item1, Item2, Item3 } from "./Article.styles";
-import { setTitleCase } from "../helpers";
+import { setTitleCase } from "../../helpers";
 
 const ArticleCard = ({ article }) => {
   const { id, title, body, category } = article;

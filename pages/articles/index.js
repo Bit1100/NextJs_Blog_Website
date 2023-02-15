@@ -1,7 +1,7 @@
 import { BiSearch } from "react-icons/bi";
 import { server } from "../../config";
-import Articles from "../../components/Articles";
-import Meta from "../../components/Meta";
+import Articles from "../../components/Articles/Articles";
+import Meta from "../../components/Layout/Meta";
 import { useState, useRef } from "react";
 import { useCustomContext } from "../../context";
 import { useRouter } from "next/router";
@@ -23,25 +23,34 @@ export default function ArticlesPage({
 }) {
   const [articles, setArticles] = useState(allArticles);
   const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState(
+    articlesCategory || "popular"
+  );
   const searchRef = useState(null);
   const { dispatch } = useCustomContext();
   const router = useRouter();
 
-  const handleAllFilter = async (e) => {
+  // Handle Filter for popular category
+  const handlePopularFilter = async (e) => {
     const response = await fetch(`${server}/api/articles`);
 
     const articles = await response.json();
 
     setArticles(articles);
 
+    setActiveCategory("popular");
+
     router.push(`/articles`, undefined, { swallow: true });
+
+    dispatch({ type: "SET_QUERY", payload: "" });
   };
 
+  // Handle Filter for all catogories
   const handleFilter = async (e) => {
     const category = e.currentTarget.textContent.toLowerCase();
 
-    if (category === "all") {
-      handleAllFilter();
+    if (category === "popular") {
+      handlePopularFilter();
       return;
     }
 
@@ -51,13 +60,14 @@ export default function ArticlesPage({
 
     setArticles(articles);
 
+    setActiveCategory(category);
+
     router.push(`?category=${category}`, undefined, { swallow: true });
+
+    dispatch({ type: "SET_QUERY", payload: "" });
   };
 
-  const categories = [
-    "all",
-    ...new Set(articles.map((article) => article.category)),
-  ];
+  const categories = ["popular", "frontend", "backend"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,26 +81,38 @@ export default function ArticlesPage({
 
   return (
     <>
+      {/* For SEO */}
       <Meta
-        title={`${!!articlesCategory ? articlesCategory : ""} articles page`}
+        title={`${
+          !!articlesCategory ? articlesCategory : "popular"
+        } articles page`}
         description={`This is a bideo website ${
           !!articlesCategory ? articlesCategory : "all "
         } articles page`}
       />
       <Section>
+        {/* Heading */}
         <Title main center>
           {articlesCategory
             ? `${setTitleCase(articlesCategory)} based `
-            : "All "}
+            : "Popular "}
           Articles
         </Title>
+
+        {/* Filter  */}
         <FilterWrapper row>
           {categories?.map((category) => (
-            <StyledFilterButton key={category} onClick={handleFilter}>
+            <StyledFilterButton
+              active={activeCategory === category}
+              key={category}
+              onClick={handleFilter}
+            >
               {setTitleCase(category)}
             </StyledFilterButton>
           ))}
         </FilterWrapper>
+
+        {/* Search */}
         <Form onSubmit={handleSubmit}>
           <FormControl
             autoComplete="off"
@@ -105,6 +127,8 @@ export default function ArticlesPage({
             <BiSearch color="#33ff33" />
           </SearchButton>
         </Form>
+
+        {/* Articles based on Filter and Search Options*/}
         <ArticlesWrapper row>
           <Articles articles={articles} />
         </ArticlesWrapper>

@@ -5,16 +5,16 @@ import {
   LeftSection,
   RightSection,
   Image,
-} from "../styles/PageStyles/App.styles";
+} from "../styles/PageStyles/Home.styles";
 import { Section, SectionTitle, SectionText } from "../styles/GlobalComponents";
 import { FancyButton } from "../styles/GlobalComponents/Button";
-import CategoryArticles from "../components/CategoryArticles";
+import CategoryArticles from "../components/Articles/CategoryArticles";
 
 export default function Home({ articles }) {
   const router = useRouter();
 
   const categories = [
-    "all",
+    "popular",
     ...new Set(articles.map((article) => article.category)),
   ];
 
