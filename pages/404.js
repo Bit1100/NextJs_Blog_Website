@@ -12,7 +12,6 @@ import {
 const ErrorPage = () => {
   const [message, setMessage] = useState("");
   const router = useRouter();
-  const id = router.asPath.slice(9);
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +27,7 @@ const ErrorPage = () => {
         description="THe page/article you're looking for is not found"
       />
       <ErrorSection>
-        <Title>{!!Number(id) ? `Article No. ${id}` : "Page"} Not Found</Title>
+        <Title>Page Not Found</Title>
         <Message>{message}</Message>
         <ErrorButton onClick={() => router.push("/")}>
           Go to Home Page

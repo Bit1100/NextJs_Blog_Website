@@ -7,16 +7,21 @@ export const ErrorSection = styled(Section)`
   justify-content: center;
   align-items: center;
 `;
+
 export const Title = styled(SectionTitle)`
   margin: 1rem auto;
   padding: 0rem;
 `;
+
 export const Message = styled(SectionTitle)`
   font-size: 2rem;
   margin: 0;
   margin-bottom: 1.5rem;
 `;
+
 export const ErrorButton = styled(StyledButton)`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.light};
   @media ${(props) => props.theme.breakpoints.sm} {
     font-size: 1.5rem;
   }

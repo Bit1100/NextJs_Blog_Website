@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { server } from "../config";
+import { getArticles } from "../controllers";
 import {
   HomeSection,
   LeftSection,
@@ -54,10 +54,8 @@ export default function Home({ articles }) {
   );
 }
 
-export const getStaticProps = async () => {
-  const response = await fetch(`${server}/api/articles`);
-
-  const articles = await response.json();
+export const getStaticProps = () => {
+  const articles = getArticles();
 
   if (!articles.length) {
     return {

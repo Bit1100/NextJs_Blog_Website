@@ -9,7 +9,7 @@ const ArticleCard = ({ article }) => {
       <Item1>Cat: {setTitleCase(category)}</Item1>
       <Item2>{title}</Item2>
       <Item3> {body}</Item3>
-      <Link href="/articles/[id]" passHref as={`/articles/${id}`}>
+      <Link href={`/articles/${id}`} passHref>
         <BtnLink>Read More..</BtnLink>
       </Link>
     </Card>

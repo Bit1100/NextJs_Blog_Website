@@ -1,8 +1,13 @@
 import { BiSearch } from "react-icons/bi";
-import axios from "axios";
+import {
+  getArticles,
+  getCategoryArticles,
+  getCategories,
+} from "../../controllers";
 import { server } from "../../config";
 import Articles from "../../components/Articles/Articles";
 import Meta from "../../components/Layout/Meta";
+import axios from "axios";
 import { useState, useRef } from "react";
 import { useCustomContext } from "../../context";
 import { useRouter } from "next/router";
@@ -68,8 +73,6 @@ export default function ArticlesPage({
     dispatch({ type: "SET_QUERY", payload: "" });
   };
 
-  const categories = ["popular", "frontend", "backend"];
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -102,7 +105,7 @@ export default function ArticlesPage({
 
         {/* Filter  */}
         <FilterWrapper row>
-          {categories?.map((category) => (
+          {getCategories()?.map((category) => (
             <StyledFilterButton
               active={activeCategory === category}
               key={category}
@@ -138,16 +141,11 @@ export default function ArticlesPage({
   );
 }
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = ({ query }) => {
   const category = query?.category || null;
 
-  const data = await axios.get(
-    `${server}/api/articles/${category ? `category/${category}` : ""}`
-  );
+  const articles = category ? getCategoryArticles(category) : getArticles();
 
-  const articles = data.data;
-
-  // console.log(articles);
   if (!articles?.length) {
     return {
       notFound: true,

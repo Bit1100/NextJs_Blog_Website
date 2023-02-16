@@ -1,5 +1,4 @@
-import axios from "axios";
-import { server } from "../../config";
+import { getArticle, getArticles } from "../../controllers";
 import Article from "../../components/Articles/Article";
 import { ArticleWrapper } from "../../components/Articles/Article.styles";
 
@@ -13,10 +12,14 @@ const SingleArticle = ({ article }) => {
 
 export default SingleArticle;
 
-export const getStaticPaths = async () => {
-  const data = await axios.get(`${server}/api/articles`);
+export const getStaticPaths = () => {
+  const articles = getArticles();
 
-  const articles = data.data;
+  if (!articles.length) {
+    return {
+      notFound: true,
+    };
+  }
 
   const paths = articles.map((article) => ({
     params: {
@@ -30,14 +33,10 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
-  const id = params.id;
+export const getStaticProps = ({ params: { id } }) => {
+  const article = getArticle(id);
 
-  const data = await axios.get(`${server}/api/articles/${id}`);
-
-  const article = data.data;
-
-  if (!article[0].id) {
+  if (!article?.id) {
     return {
       notFound: true,
     };
@@ -45,7 +44,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      article: article[0],
+      article: article,
     },
     revalidate: 3600,
   };
